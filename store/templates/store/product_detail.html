@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.name }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 40px; background-color: #f8f9fa; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: flex; gap: 30px; }
+        .product-image img { max-width: 300px; height: auto; border-radius: 8px; object-fit: cover; }
+        .product-info h1 { margin-top: 0; color: #333; }
+        .product-info p { color: #555; line-height: 1.6; }
+        .price { font-size: 22px; color: #28a745; font-weight: bold; margin: 15px 0; }
+        .btn { display: inline-block; padding: 10px 20px; text-decoration: none; border-radius: 4px; font-size: 15px; color: white; margin-right: 10px; margin-top: 15px; }
+        .btn-cart { background-color: #28a745; }
+        .btn-back { background-color: #6c757d; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="product-image">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            {% endif %}
+        </div>
+        
+        <div class="product-info">
+            <h1>{{ product.name }}</h1>
+            <p class="price">₹{{ product.price }}</p>
+            <p>{{ product.description }}</p>
+            
+            <!-- Buttons -->
+            <a href="{% url 'add_to_cart' product.id %}" class="btn btn-cart">Add to Cart</a>
+            <a href="{% url 'product_list' %}" class="btn btn-back">Back to Products</a>
+        </div>
+    </div>
+
+</body>
+</html>
